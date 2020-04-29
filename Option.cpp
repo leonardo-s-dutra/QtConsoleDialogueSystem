@@ -3,13 +3,13 @@
 Option::Option()
 {
     setText(0);
-    setDestinationNodeID(-1);
+    setDestinationID(-1);
 }
 
-Option::Option(QString text, int destinationNodeID)
+Option::Option(QString text, int destinationID)
 {
     setText(text);
-    setDestinationNodeID(destinationNodeID);
+    setDestinationID(destinationID);
 }
 
 QString Option::getText() const
@@ -17,9 +17,9 @@ QString Option::getText() const
     return this->text;
 }
 
-int Option::getDestinationNodeID() const
+int Option::getDestinationID() const
 {
-    return this->destinationNodeID;
+    return this->destinationID;
 }
 
 void Option::setText(QString text)
@@ -27,7 +27,7 @@ void Option::setText(QString text)
     this->text = text;
 }
 
-void Option::setDestinationNodeID(int destinationNodeID)
+void Option::setDestinationID(int destinationID)
 {
-    this->destinationNodeID = destinationNodeID;
+    this->destinationID = destinationID;
 }

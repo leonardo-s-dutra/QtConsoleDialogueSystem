@@ -7,16 +7,16 @@ class Option
 {
 public:
 	Option();
-	Option(QString text, int destinationNodeID);
+	Option(QString text, int destinationID);
 
 	QString getText() const;
-	int getDestinationNodeID() const;
+	int getDestinationID() const;
 
 	void setText(QString text);
-	void setDestinationNodeID(int destinationNodeID);
+	void setDestinationID(int destinationID);
 
 private:
 	QString text;
-	int destinationNodeID;
+	int destinationID;
 };
 

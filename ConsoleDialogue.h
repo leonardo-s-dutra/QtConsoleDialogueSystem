@@ -9,6 +9,8 @@ class ConsoleDialogue
 public:
 	ConsoleDialogue();
 
+	void run();
+
 	void addNode(Node* node);
 
 private:

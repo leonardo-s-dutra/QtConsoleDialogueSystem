@@ -12,6 +12,31 @@ Node::Node(QString text)
 	setText(text);
 }
 
+int Node::run()
+{
+    int key = 0;
+
+    out << Qt::endl << getText() << Qt::endl;
+
+    if (options.size() == 0)
+        return -1;
+
+    out << "----------------------------------------" << Qt::endl;
+
+    for (int i = 0; i < options.size(); i++)
+        out << i + 1 << " - " << options[i]->getText() << Qt::endl;
+
+    out << "----------------------------------------" << Qt::endl;
+
+    while (key < 1 || key > options.size())
+    {
+        out << "Enter an option: " << flush;
+        in >> key;
+    }
+
+    return options[key - 1]->getDestinationID();
+}
+
 int Node::getID() const
 {
     return this->ID;

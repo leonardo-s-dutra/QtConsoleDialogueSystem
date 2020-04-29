@@ -5,6 +5,14 @@ ConsoleDialogue::ConsoleDialogue()
 
 }
 
+void ConsoleDialogue::run()
+{
+    int currentID = 0;
+
+    while (currentID != -1)
+        currentID = nodes[currentID]->run();
+}
+
 void ConsoleDialogue::addNode(Node* node)
 {
     nodes.append(node);

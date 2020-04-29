@@ -1,7 +1,11 @@
 #pragma once
 
 #include <QtCore>
+#include <qtextstream.h>
 #include "Option.h"
+
+static QTextStream in(stdin);
+static QTextStream out(stdout);
 
 
 class Node
@@ -9,6 +13,8 @@ class Node
 public:
 	Node();
 	Node(QString text);
+
+	int run();
 
 	int getID() const;
 	QString getText() const;
