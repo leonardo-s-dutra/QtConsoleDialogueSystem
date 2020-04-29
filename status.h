@@ -1,0 +1,12 @@
+#pragma once
+
+typedef enum
+{
+    INVALID_FILE,
+    INVALID_CONTENT,
+    NO_NODE_ID,
+    NO_NODE_TEXT,
+    NO_OPTION_TEXT,
+    NO_OPTION_DESTINATION_ID,
+    OK
+} LOAD_STATUS;
