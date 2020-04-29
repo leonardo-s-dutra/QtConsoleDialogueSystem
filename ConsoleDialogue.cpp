@@ -7,64 +7,62 @@ ConsoleDialogue::ConsoleDialogue()
 
 LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
 {
-    QDomDocument document;
+    QDomDocument* document = new QDomDocument();
 
-    QFile* file = new QFile(fileName);
+    LOAD_STATUS loadStatus = XMLManager::load(fileName, document);
 
-    if (!file->open(QIODevice::ReadOnly | QIODevice::Text))
-        return INVALID_FILE;
+    if(loadStatus != OK)
+    {
+        delete document;
+        return loadStatus;
+    }
 
-    if (!document.setContent(file))
-        return INVALID_CONTENT;
-
-    file->close();
-
-    QDomElement dialogueRoot = document.firstChildElement();
+    QDomElement dialogueRoot = document->firstChildElement();
 
     QDomNodeList domNodes = dialogueRoot.elementsByTagName("Node");
 
-    for (int i = 0; i < domNodes.count(); i++)
+    for(int i = 0; i < domNodes.count(); i++)
     {
-        QDomElement elementNode = domNodes.at(i).toElement();
+        QDomElement* elementNode = new QDomElement(domNodes.at(i).toElement());
 
-        if (elementNode.attribute("ID") == 0)
-        {
-            nodes.clear();
-            return NO_NODE_ID;
-        }
+        LOAD_STATUS nodeStatus = XMLManager::loadNode(elementNode);
 
-        if (elementNode.attribute("Text") == 0)
+        if (nodeStatus != OK)
         {
+            foreach (Node* node, nodes)
+                delete node;
+
             nodes.clear();
-            return NO_NODE_TEXT;
+            delete elementNode;
+            return nodeStatus;
         }
 
         Node* dialogueNode = new Node();
-        dialogueNode->setID(elementNode.attribute("ID").toInt());
-        dialogueNode->setText(elementNode.attribute("Text"));
+        dialogueNode->setID(elementNode->attribute("ID").toInt());
+        dialogueNode->setText(elementNode->attribute("Text"));
         addNode(dialogueNode);
 
-        QDomNodeList domOptions = elementNode.elementsByTagName("Option");
+        QDomNodeList domOptions = elementNode->elementsByTagName("Option");
 
         for (int j = 0; j < domOptions.count(); j++)
         {
-            QDomElement elementOption = domOptions.at(j).toElement();
+            QDomElement* elementOption = new QDomElement(domOptions.at(j).toElement());
 
-            if (elementOption.attribute("Text") == 0)
-            {
-                nodes.clear();
-                return NO_OPTION_TEXT;
-            }
+            LOAD_STATUS optionStatus = XMLManager::loadOption(elementOption);
 
-            if (elementOption.attribute("Destination") == 0)
+            if (optionStatus != OK)
             {
+                foreach (Node* node, nodes)
+                    delete node;
+
                 nodes.clear();
-                return NO_OPTION_DESTINATION_ID;
+                delete elementNode;
+                return nodeStatus;
             }
 
             Option* dialogueOption = new Option();
-            dialogueOption->setText(elementOption.attribute("Text"));
-            dialogueOption->setDestinationID(elementOption.attribute("Destination").toInt());
+            dialogueOption->setText(elementOption->attribute("Text"));
+            dialogueOption->setDestinationID(elementOption->attribute("Destination").toInt());
             dialogueNode->addOption(dialogueOption);
         }
     }

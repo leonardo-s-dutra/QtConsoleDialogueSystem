@@ -3,7 +3,8 @@
 #include <QtCore>
 #include <QtXml/qdom.h>
 #include "Node.h"
-#include "status.h"
+#include "load_status.h"
+#include "XMLManager.h"
 
 class ConsoleDialogue
 {

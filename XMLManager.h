@@ -1,0 +1,22 @@
+#pragma once
+
+#include <QtCore>
+#include <QtXml/qdom.h>
+#include "Node.h"
+#include "Option.h"
+#include "load_status.h"
+
+
+class XMLManager
+{
+public:
+	static LOAD_STATUS load(QString fileName, QDomDocument* document);
+
+	static LOAD_STATUS loadNode(QDomElement* node);
+
+	static LOAD_STATUS loadOption(QDomElement* option);
+
+private:
+	XMLManager() {}
+};
+
