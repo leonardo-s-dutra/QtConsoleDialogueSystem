@@ -1,12 +1,12 @@
 #include "Option.h"
 
-Option::Option()
+Option::Option(QObject* parent = nullptr) : QObject(parent)
 {
     setText(0);
     setDestinationID(-1);
 }
 
-Option::Option(QString text, int destinationID)
+Option::Option(QString text, int destinationID, QObject* parent = nullptr) : QObject(parent)
 {
     setText(text);
     setDestinationID(destinationID);

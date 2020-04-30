@@ -3,11 +3,11 @@
 #include <QtCore>
 
 
-class Option
+class Option : public QObject
 {
 public:
-	Option();
-	Option(QString text, int destinationID);
+	Option(QObject* parent);
+	Option(QString text, int destinationID, QObject* parent);
 
 	QString getText() const;
 	int getDestinationID() const;

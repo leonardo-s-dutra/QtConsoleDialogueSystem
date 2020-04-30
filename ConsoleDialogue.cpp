@@ -1,6 +1,6 @@
 #include "ConsoleDialogue.h"
 
-ConsoleDialogue::ConsoleDialogue()
+ConsoleDialogue::ConsoleDialogue(QObject* parent = nullptr) : QObject(parent)
 {
 
 }
@@ -18,14 +18,13 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
     }
 
     QDomElement dialogueRoot = document->firstChildElement();
-
     QDomNodeList domNodes = dialogueRoot.elementsByTagName("Node");
 
     for(int i = 0; i < domNodes.count(); i++)
     {
-        QDomElement* elementNode = new QDomElement(domNodes.at(i).toElement());
+        QDomElement elementNode = domNodes.at(i).toElement();
 
-        LOAD_STATUS nodeStatus = XMLManager::loadNode(elementNode);
+        LOAD_STATUS nodeStatus = XMLManager::loadNode(&elementNode);
 
         if (nodeStatus != OK)
         {
@@ -33,22 +32,21 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
                 delete node;
 
             nodes.clear();
-            delete elementNode;
             return nodeStatus;
         }
 
-        Node* dialogueNode = new Node();
-        dialogueNode->setID(elementNode->attribute("ID").toInt());
-        dialogueNode->setText(elementNode->attribute("Text"));
+        Node* dialogueNode = new Node(this);
+        dialogueNode->setID(elementNode.attribute("ID").toInt());
+        dialogueNode->setText(elementNode.attribute("Text"));
         addNode(dialogueNode);
 
-        QDomNodeList domOptions = elementNode->elementsByTagName("Option");
+        QDomNodeList domOptions = elementNode.elementsByTagName("Option");
 
         for (int j = 0; j < domOptions.count(); j++)
         {
-            QDomElement* elementOption = new QDomElement(domOptions.at(j).toElement());
+            QDomElement elementOption = domOptions.at(j).toElement();
 
-            LOAD_STATUS optionStatus = XMLManager::loadOption(elementOption);
+            LOAD_STATUS optionStatus = XMLManager::loadOption(&elementOption);
 
             if (optionStatus != OK)
             {
@@ -56,13 +54,12 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
                     delete node;
 
                 nodes.clear();
-                delete elementNode;
                 return nodeStatus;
             }
 
-            Option* dialogueOption = new Option();
-            dialogueOption->setText(elementOption->attribute("Text"));
-            dialogueOption->setDestinationID(elementOption->attribute("Destination").toInt());
+            Option* dialogueOption = new Option(this);
+            dialogueOption->setText(elementOption.attribute("Text"));
+            dialogueOption->setDestinationID(elementOption.attribute("Destination").toInt());
             dialogueNode->addOption(dialogueOption);
         }
     }

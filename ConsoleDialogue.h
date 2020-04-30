@@ -6,10 +6,10 @@
 #include "load_status.h"
 #include "XMLManager.h"
 
-class ConsoleDialogue
+class ConsoleDialogue : QObject
 {
 public:
-	ConsoleDialogue();
+	ConsoleDialogue(QObject* parent);
 
 	LOAD_STATUS loadDialogue(QString fileName);
 	void run();

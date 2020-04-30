@@ -8,11 +8,11 @@ static QTextStream in(stdin);
 static QTextStream out(stdout);
 
 
-class Node
+class Node : public QObject
 {
 public:
-	Node();
-	Node(QString text);
+	Node(QObject* parent);
+	Node(QString text, QObject* parent);
 
 	int run();
 
