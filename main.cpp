@@ -1,35 +1,58 @@
 #include "ConsoleDialogue.h"
 
-
 int main(int argc, char *argv[])
 {
     ConsoleDialogue dialogue(nullptr);
 
+    if (argc < 2)
+    {
+        out << "No dialogue file parsed.\n" << flush;
+        return -1;
+    }
 
-    LOAD_STATUS status = dialogue.loadDialogue("D:/MyDialogue.xml");
-    
-    if (status == INVALID_FILE)
-        out << "Could not open file.\n\n" << flush;
+    else if (argc > 2)
+    {
+        out << "Too many arguments parsed.\n" << flush;
+        return -1;
+    }
 
-    else if (status == INVALID_CONTENT)
-        out << "Could not set content.\n\n" << flush;
+    LOAD_STATUS status = dialogue.loadDialogue(argv[1]);
+            
+    switch (status)
+    {
+    case NOT_XML_EXTENSION:
+        out << "Dialogue must be a .xml file.\n\n" << flush;
+        break;
 
-    else if (status == NO_NODE_ID)
+    case INVALID_FILE:
+        out << "Dialogue must be a .xml file.\n\n" << flush;
+        break;
+
+    case INVALID_CONTENT:
+        out << "Could not set content to dialogue.\n\n" << flush;
+        break;
+
+    case NO_NODE_ID:
         out << "Node with missing ID found.\n\n" << flush;
+        break;
 
-    else if (status == NO_NODE_TEXT)
+    case NO_NODE_TEXT:
         out << "Node with missing text found.\n\n" << flush;
+        break;
 
-    else if (status == NO_OPTION_TEXT)
+    case NO_OPTION_TEXT:
         out << "Option with missing text found.\n\n" << flush;
+        break;
 
-    else if (status == NO_OPTION_DESTINATION_ID)
+    case NO_OPTION_DESTINATION_ID:
         out << "Option with missing destination ID found.\n\n" << flush;
+        break;
 
-    else
+    default:
         dialogue.run();
+    }
 
-    out << "\n\t---END OF DIALOGUE---\n\n" << flush;
+    out << "\t---END OF DIALOGUE---\n\n" << flush;
     out << "Press ENTER to exit..." << flush;
     in.read(1);
 

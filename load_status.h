@@ -2,6 +2,8 @@
 
 typedef enum
 {
+    NO_FILE_PARSED,
+    NOT_XML_EXTENSION,
     INVALID_FILE,
     INVALID_CONTENT,
     NO_NODE_ID,

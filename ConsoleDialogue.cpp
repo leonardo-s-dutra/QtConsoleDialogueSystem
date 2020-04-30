@@ -9,7 +9,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
 {
     QDomDocument* document = new QDomDocument();
 
-    LOAD_STATUS loadStatus = XMLManager::load(fileName, document);
+    LOAD_STATUS loadStatus = XMLManager::loadFile(fileName, document);
 
     if(loadStatus != OK)
     {

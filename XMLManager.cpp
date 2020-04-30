@@ -1,19 +1,22 @@
 #include "XMLManager.h"
 
-LOAD_STATUS XMLManager::load(QString fileName, QDomDocument* document)
+LOAD_STATUS XMLManager::loadFile(QString fileName, QDomDocument* document)
 {
-	QFile* file = new QFile(fileName);
+    if (!fileName.endsWith(".xml"))
+        return NOT_XML_EXTENSION;
 
-    if (!file->open(QIODevice::ReadOnly | QIODevice::Text))
+	QFile file(fileName);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return INVALID_FILE;
 
-    if (!document->setContent(file))
+    if (!document->setContent(&file))
     {
-        file->close();
+        file.close();
         return INVALID_CONTENT;
     }
 
-    file->close();
+    file.close();
 
     return OK;
 }
