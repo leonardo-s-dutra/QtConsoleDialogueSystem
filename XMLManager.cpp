@@ -1,6 +1,6 @@
 #include "XMLManager.h"
 
-LOAD_STATUS XMLManager::loadFile(QString fileName, QDomDocument* document)
+LOAD_STATUS XMLManager::checkFile(QString fileName, QDomDocument* document)
 {
     if (!fileName.endsWith(".xml"))
         return NOT_XML_EXTENSION;
@@ -21,7 +21,7 @@ LOAD_STATUS XMLManager::loadFile(QString fileName, QDomDocument* document)
     return OK;
 }
 
-LOAD_STATUS XMLManager::loadNode(QDomElement* node)
+LOAD_STATUS XMLManager::checkNode(QDomElement* node)
 {
     if (node->attribute("ID") == 0)
         return NO_NODE_ID;
@@ -32,7 +32,7 @@ LOAD_STATUS XMLManager::loadNode(QDomElement* node)
     return OK;
 }
 
-LOAD_STATUS XMLManager::loadOption(QDomElement* option)
+LOAD_STATUS XMLManager::checkOption(QDomElement* option)
 {
     if (option->attribute("Text") == 0)
         return NO_OPTION_TEXT;

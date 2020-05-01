@@ -9,7 +9,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
 {
     QDomDocument document;
 
-    LOAD_STATUS loadStatus = XMLManager::loadFile(fileName, &document);
+    LOAD_STATUS loadStatus = XMLManager::checkFile(fileName, &document);
 
     if(loadStatus != OK)
         return loadStatus;
@@ -21,7 +21,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
     {
         QDomElement elementNode = domNodes.at(i).toElement();
 
-        LOAD_STATUS nodeStatus = XMLManager::loadNode(&elementNode);
+        LOAD_STATUS nodeStatus = XMLManager::checkNode(&elementNode);
 
         if (nodeStatus != OK)
         {
@@ -43,7 +43,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
         {
             QDomElement elementOption = domOptions.at(j).toElement();
 
-            LOAD_STATUS optionStatus = XMLManager::loadOption(&elementOption);
+            LOAD_STATUS optionStatus = XMLManager::checkOption(&elementOption);
 
             if (optionStatus != OK)
             {
