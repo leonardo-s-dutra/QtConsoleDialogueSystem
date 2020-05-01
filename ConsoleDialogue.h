@@ -9,7 +9,7 @@
 class ConsoleDialogue : QObject
 {
 public:
-	ConsoleDialogue(QObject* parent = nullptr);
+	ConsoleDialogue(QObject* parent = Q_NULLPTR);
 
 	LOAD_STATUS loadDialogue(QString fileName);
 	void run();
@@ -19,4 +19,3 @@ public:
 private:
 	QList<Node*> nodes;
 };
-

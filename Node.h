@@ -11,8 +11,8 @@ static QTextStream out(stdout);
 class Node : public QObject
 {
 public:
-	Node(QObject* parent = nullptr);
-	Node(QString text, QObject* parent = nullptr);
+	Node(QObject* parent = Q_NULLPTR);
+	Node(QString text, QObject* parent = Q_NULLPTR);
 
 	int run();
 
@@ -29,4 +29,3 @@ private:
 	QString text;
 	QList<Option*> options;
 };
-
