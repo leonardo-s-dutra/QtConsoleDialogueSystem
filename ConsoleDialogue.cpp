@@ -9,10 +9,10 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
 {
     QDomDocument document;
 
-    LOAD_STATUS loadStatus = XMLManager::loadFile(fileName, &document);
+    LOAD_STATUS fileStatus = XMLManager::loadFile(fileName, &document);
 
-    if(loadStatus != OK)
-        return loadStatus;
+    if(fileStatus != OK)
+        return fileStatus;
 
     QDomElement dialogueRoot = document.firstChildElement();
     QDomNodeList domNodes = dialogueRoot.elementsByTagName("Node");
