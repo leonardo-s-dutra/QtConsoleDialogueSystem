@@ -20,11 +20,14 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
     for(int i = 0; i < domNodes.count(); i++)
     {
         QDomElement elementNode = domNodes.at(i).toElement();
+        Node* dialogueNode = new Node(this);
 
-        LOAD_STATUS nodeStatus = XMLManager::checkNode(&elementNode);
+        LOAD_STATUS nodeStatus = XMLManager::loadNode(&elementNode, dialogueNode);
 
         if (nodeStatus != OK)
         {
+            delete dialogueNode;
+
             foreach (Node* node, nodes)
                 delete node;
 
@@ -32,9 +35,6 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
             return nodeStatus;
         }
 
-        Node* dialogueNode = new Node(this);
-        dialogueNode->setID(elementNode.attribute("ID").toInt());
-        dialogueNode->setText(elementNode.attribute("Text"));
         addNode(dialogueNode);
 
         QDomNodeList domOptions = elementNode.elementsByTagName("Option");
@@ -42,11 +42,14 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
         for (int j = 0; j < domOptions.count(); j++)
         {
             QDomElement elementOption = domOptions.at(j).toElement();
+            Option* dialogueOption = new Option(dialogueNode);
 
-            LOAD_STATUS optionStatus = XMLManager::checkOption(&elementOption);
+            LOAD_STATUS optionStatus = XMLManager::loadOption(&elementOption, dialogueOption);
 
             if (optionStatus != OK)
             {
+                delete dialogueNode;
+
                 foreach (Node* node, nodes)
                     delete node;
 
@@ -54,9 +57,6 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
                 return nodeStatus;
             }
 
-            Option* dialogueOption = new Option(dialogueNode);
-            dialogueOption->setText(elementOption.attribute("Text"));
-            dialogueOption->setDestinationID(elementOption.attribute("Destination").toInt());
             dialogueNode->addOption(dialogueOption);
         }
     }
