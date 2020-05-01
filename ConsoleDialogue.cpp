@@ -27,11 +27,6 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
         if (nodeStatus != OK)
         {
             delete dialogueNode;
-
-            foreach (Node* node, nodes)
-                delete node;
-
-            nodes.clear();
             return nodeStatus;
         }
 
@@ -49,11 +44,6 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
             if (optionStatus != OK)
             {
                 delete dialogueNode;
-
-                foreach (Node* node, nodes)
-                    delete node;
-
-                nodes.clear();
                 return nodeStatus;
             }
 
