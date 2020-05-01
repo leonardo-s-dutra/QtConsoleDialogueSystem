@@ -6,8 +6,8 @@
 class Option : public QObject
 {
 public:
-	Option(QObject* parent);
-	Option(QString text, int destinationID, QObject* parent);
+	Option(QObject* parent = nullptr);
+	Option(QString text, int destinationID, QObject* parent = nullptr);
 
 	QString getText() const;
 	int getDestinationID() const;

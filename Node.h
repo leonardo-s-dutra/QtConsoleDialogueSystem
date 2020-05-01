@@ -11,8 +11,8 @@ static QTextStream out(stdout);
 class Node : public QObject
 {
 public:
-	Node(QObject* parent);
-	Node(QString text, QObject* parent);
+	Node(QObject* parent = nullptr);
+	Node(QString text, QObject* parent = nullptr);
 
 	int run();
 
