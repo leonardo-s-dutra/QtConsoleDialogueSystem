@@ -54,5 +54,7 @@ int main(int argc, char *argv[])
     out << "Press ENTER to exit..." << flush;
     in.read(1);
 
+    delete dialogue;
+
     return 0;
 }
