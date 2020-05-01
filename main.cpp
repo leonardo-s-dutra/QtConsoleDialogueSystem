@@ -15,10 +15,8 @@ int main(int argc, char *argv[])
         out << "Too many arguments parsed.\n" << flush;
         return -1;
     }
-
-    LOAD_STATUS status = dialogue.loadDialogue(argv[1]);
             
-    switch (status)
+    switch (dialogue.loadDialogue(argv[1]))
     {
     case NOT_XML_EXTENSION:
         out << "Dialogue must be a .xml file.\n\n" << flush;
