@@ -57,7 +57,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
                 return nodeStatus;
             }
 
-            Option* dialogueOption = new Option(this);
+            Option* dialogueOption = new Option(dialogueNode);
             dialogueOption->setText(elementOption.attribute("Text"));
             dialogueOption->setDestinationID(elementOption.attribute("Destination").toInt());
             dialogueNode->addOption(dialogueOption);
