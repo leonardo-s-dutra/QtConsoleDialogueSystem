@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-    ConsoleDialogue dialogue(nullptr);
+    ConsoleDialogue* dialogue = new ConsoleDialogue(nullptr);
 
     if (argc < 2)
     {
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         return -1;
     }
             
-    switch (dialogue.loadDialogue(argv[1]))
+    switch (dialogue->loadDialogue(argv[1]))
     {
     case NOT_XML_EXTENSION:
         out << "Dialogue must be a .xml file.\n\n" << flush;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
         break;
 
     default:
-        dialogue.run();
+        dialogue->run();
     }
 
     out << "\t---END OF DIALOGUE---\n\n" << flush;

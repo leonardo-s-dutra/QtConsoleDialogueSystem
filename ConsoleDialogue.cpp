@@ -7,17 +7,14 @@ ConsoleDialogue::ConsoleDialogue(QObject* parent = nullptr) : QObject(parent)
 
 LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
 {
-    QDomDocument* document = new QDomDocument();
+    QDomDocument document;
 
-    LOAD_STATUS loadStatus = XMLManager::loadFile(fileName, document);
+    LOAD_STATUS loadStatus = XMLManager::loadFile(fileName, &document);
 
     if(loadStatus != OK)
-    {
-        delete document;
         return loadStatus;
-    }
 
-    QDomElement dialogueRoot = document->firstChildElement();
+    QDomElement dialogueRoot = document.firstChildElement();
     QDomNodeList domNodes = dialogueRoot.elementsByTagName("Node");
 
     for(int i = 0; i < domNodes.count(); i++)
