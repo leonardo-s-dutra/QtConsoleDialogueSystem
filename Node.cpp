@@ -12,6 +12,8 @@ Node::Node(QString text, QObject* parent = nullptr) : QObject(parent)
 	setText(text);
 }
 
+Node::~Node() { foreach(Option* option, options) delete option; }
+
 int Node::run()
 {
     int key = 0;
