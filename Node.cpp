@@ -1,12 +1,12 @@
 #include "Node.h"
 
-Node::Node(QObject* parent = nullptr) : QObject(parent)
+Node::Node(QObject* parent) : QObject(parent)
 {
 	setID(-1);
 	setText(0);
 }
 
-Node::Node(QString text, QObject* parent = nullptr) : QObject(parent)
+Node::Node(QString text, QObject* parent) : QObject(parent)
 {
 	setID(-1);
 	setText(text);

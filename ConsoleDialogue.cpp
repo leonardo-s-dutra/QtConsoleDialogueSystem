@@ -1,6 +1,6 @@
 #include "ConsoleDialogue.h"
 
-ConsoleDialogue::ConsoleDialogue(QObject* parent = nullptr) : QObject(parent)
+ConsoleDialogue::ConsoleDialogue(QObject* parent) : QObject(parent)
 {
 
 }
