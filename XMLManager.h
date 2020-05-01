@@ -12,9 +12,9 @@ class XMLManager
 public:
 	static LOAD_STATUS loadFile(QString fileName, QDomDocument* document);
 
-	static LOAD_STATUS loadNode(QDomElement* element, Node* node);
+	static LOAD_STATUS loadNode(QDomElement element, Node* node);
 
-	static LOAD_STATUS loadOption(QDomElement* element, Option* option);
+	static LOAD_STATUS loadOption(QDomElement element, Option* option);
 
 private:
 	XMLManager() {}

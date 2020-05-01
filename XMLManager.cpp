@@ -21,30 +21,30 @@ LOAD_STATUS XMLManager::loadFile(QString fileName, QDomDocument* document)
     return OK;
 }
 
-LOAD_STATUS XMLManager::loadNode(QDomElement* element, Node* node)
+LOAD_STATUS XMLManager::loadNode(QDomElement element, Node* node)
 {
-    if (element->attribute("ID") == 0)
+    if (element.attribute("ID") == 0)
         return NO_NODE_ID;
 
-    if (element->attribute("Text") == 0)
+    if (element.attribute("Text") == 0)
         return NO_NODE_TEXT;
 
-    node->setID(element->attribute("ID").toInt());
-    node->setText(element->attribute("Text"));
+    node->setID(element.attribute("ID").toInt());
+    node->setText(element.attribute("Text"));
 
     return OK;
 }
 
-LOAD_STATUS XMLManager::loadOption(QDomElement* element, Option* option)
+LOAD_STATUS XMLManager::loadOption(QDomElement element, Option* option)
 {
-    if (element->attribute("Text") == 0)
+    if (element.attribute("Text") == 0)
         return NO_OPTION_TEXT;
 
-    if (element->attribute("Destination") == 0)
+    if (element.attribute("Destination") == 0)
         return NO_OPTION_DESTINATION_ID;
 
-    option->setText(element->attribute("Text"));
-    option->setDestinationID(element->attribute("Destination").toInt());
+    option->setText(element.attribute("Text"));
+    option->setDestinationID(element.attribute("Destination").toInt());
 
     return OK;
 }

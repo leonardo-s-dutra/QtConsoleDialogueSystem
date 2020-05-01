@@ -22,7 +22,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
         QDomElement elementNode = domNodes.at(i).toElement();
         Node* dialogueNode = new Node(this);
 
-        LOAD_STATUS nodeStatus = XMLManager::loadNode(&elementNode, dialogueNode);
+        LOAD_STATUS nodeStatus = XMLManager::loadNode(elementNode, dialogueNode);
 
         if (nodeStatus != OK)
         {
@@ -39,7 +39,7 @@ LOAD_STATUS ConsoleDialogue::loadDialogue(QString fileName)
             QDomElement elementOption = domOptions.at(j).toElement();
             Option* dialogueOption = new Option(dialogueNode);
 
-            LOAD_STATUS optionStatus = XMLManager::loadOption(&elementOption, dialogueOption);
+            LOAD_STATUS optionStatus = XMLManager::loadOption(elementOption, dialogueOption);
 
             if (optionStatus != OK)
             {
