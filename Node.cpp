@@ -23,12 +23,12 @@ int Node::run()
 
     out << "----------------------------------------" << Qt::endl;
 
-    for (int i = 0; i < options.size(); i++)
+    for (int i = 0; i < options.count(); i++)
         out << i + 1 << " - " << options[i]->getText() << Qt::endl;
 
     out << "----------------------------------------" << Qt::endl;
 
-    while (key < 1 || key > options.size())
+    while (key < 1 || key > options.count())
     {
         out << "Enter an option: " << flush;
         in >> key;
