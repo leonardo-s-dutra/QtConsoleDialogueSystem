@@ -60,6 +60,8 @@ void ConsoleDialogue::run()
 
     while (currentID != -1)
         currentID = nodes[currentID]->run();
+
+    out << Qt::endl;
 }
 
 void ConsoleDialogue::addNode(Node* node)
