@@ -1,6 +1,6 @@
 #include "XMLManager.h"
 
-LOAD_STATUS XMLManager::checkFile(QString fileName, QDomDocument* document)
+LOAD_STATUS XMLManager::loadFile(QString fileName, QDomDocument* document)
 {
     if (!fileName.endsWith(".xml"))
         return NOT_XML_EXTENSION;

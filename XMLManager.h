@@ -10,7 +10,7 @@
 class XMLManager
 {
 public:
-	static LOAD_STATUS checkFile(QString fileName, QDomDocument* document);
+	static LOAD_STATUS loadFile(QString fileName, QDomDocument* document);
 
 	static LOAD_STATUS loadNode(QDomElement* element, Node* node);
 
