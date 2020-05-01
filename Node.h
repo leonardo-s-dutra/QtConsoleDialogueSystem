@@ -13,7 +13,6 @@ class Node : public QObject
 public:
 	Node(QObject* parent);
 	Node(QString text, QObject* parent);
-    ~Node();
 
 	int run();
 
