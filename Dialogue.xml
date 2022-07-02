@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dialogue>
+	<Node ID="0" Text="Hello there!">
+		<Option  Text="Hello! What's your name?" 					Destination="1"/>
+		<Option  Text="Where am I?" 								Destination="2"/>
+		<Option  Text="Sorry, I don't wanna talk." 					Destination="3"/>
+	</Node>
+	<Node ID="1" Text="My name is [__NpcName__]. What's yours?">
+		<Option  Text="My name is [__PlayerName__]" 				Destination="4"/>
+		<Option  Text="First of all: where am I?" 					Destination="2"/>
+		<Option  Text="Nevermind..." 								Destination="3"/>
+	</Node>
+	<Node ID="2" Text="Well, you are in [__CityName__]. First time around?">
+		<Option  Text="I think so. I just woke up and can't remember what happened last night."	Destination="5"/>
+		<Option  Text="Am I far from [__OtherCityName__]?" 										Destination="6"/>
+	</Node>
+	<Node ID="3" Text="All right then."/>
+	<Node ID="4" Text="Hello [__PlayerName__]! You look hurt. Are you ok?">
+		<Option  Text="What are you talking about?" 				Destination="7"/>
+		<Option  Text="I can't remember anything. Where am I?" 		Destination="2"/>
+		<Option  Text="Sorry, I have no time." 						Destination="3"/>
+	</Node>
+	<Node ID="5" Text="Seriously? What can you remember?">
+		<Option  Text="Sorry, I have no time. Thank you." 			Destination="3"/>
+	</Node>
+	<Node ID="6" Text="Actually you're pretty far. How did you get here anyway?">
+		<Option  Text="I can't remember much. I need to go."		Destination="3"/>
+		<Option  Text="Wait... I think I'm hurt. Can you help me?" 	Destination="8"/>
+	</Node>
+	<Node ID="7" Text="Look at your arms! You're bleeding!">
+		<Option  Text="I need help!" 	Destination="8"/>
+	</Node>
+	<Node ID="8" Text="Come to my place. My wife can help you."/>
+</Dialogue>
